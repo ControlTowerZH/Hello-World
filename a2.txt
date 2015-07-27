@@ -1,0 +1,25 @@
+10
+100
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
+
+public class ttt {
+	public static void main(String[] args)throws IOException 
+	{
+		FileReader in=new FileReader("c:\\ f1.txt");
+		BufferedReader bin=new BufferedReader(in);
+		FileWriter out=new FileWriter("c:\\f2.txt",true);
+		String s;
+		while((s=bin.readLine())!=null)
+		{
+			System.out.print(s);
+			out.write(s+"\n");
+		}
+		in.close();
+		out.close();
+	}
+}

@@ -1,0 +1,70 @@
+1.定义一个Rect类，包括属性length, width ，
+方法有构造方法给Length, width赋值，
+求周长的方法Perimeter()和求面积的方法Area()，
+实现并测试该类的正确性。
+
+2.定义一个Animals类，包含Age、Weight属性，
+再定义一个Animals类的子类Dog类，
+其中包含GetAge()、SetAge()、GetWeight()、SetWeight()方法，
+实现并测试该类的正确性。
+class Rect
+{
+	int length,width;
+	public Rect()
+	{
+		length=3;
+		width=4;
+	}
+	public int Perimeter()
+	{
+		return (length+width)*2;
+	}
+	public int Area()
+	{
+		return length*width;
+	}
+}
+public class homework {
+	public static void main(String[] args)
+	{
+	 Rect s1=new Rect();
+	 System.out.println("矩形的面积="+s1.Area());
+	 System.out.println("矩形的周长="+s1.Perimeter());
+	}
+
+}
+class Animals
+{
+	int Age=1,Weight=3;
+}
+class Dog extends Animals
+{
+	public int GetAge(int i)
+	{
+		return i;
+	}
+	public int GetWeight(int j)
+	{
+		return j;
+	}
+	public void SetAge()
+	{
+		System.out.println("狗原来的年龄="+Age);
+	}
+	public void SetWeight()
+	{
+		System.out.println("狗原来的重量="+Weight);
+	}
+	
+}
+public class homework {
+	
+	public static void main(String[] args) {
+	 Dog d1=new Dog();
+	 d1.SetAge();
+	 d1.SetWeight();
+	 System.out.println(d1.GetAge(30));
+	 System.out.println(d1.GetWeight(30));
+	}
+
+}
