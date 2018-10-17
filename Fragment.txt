@@ -1,0 +1,55 @@
+public class Fragment3 extends Fragment {
+    private TextView timerView;
+    private Button mGetCodeBtn;
+    private TimeCount time;
+
+    public Fragment3() {
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_fragment3, container, false);
+        init(view);
+        return view;
+    }
+
+    protected void init(View view) {
+        time = new TimeCount(10000, 1000);
+        mGetCodeBtn = view.findViewById(R.id.btn);
+        timerView=view.findViewById(R.id.tv_time);
+        mGetCodeBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                time.start();
+            }
+        });
+
+    }
+
+    class TimeCount extends CountDownTimer {
+
+        private TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            mGetCodeBtn.setBackgroundColor(Color.parseColor(#B6B6D8));
+            mGetCodeBtn.setClickable(false);
+            mGetCodeBtn.setText(( + millisUntilFinished  1000 + ) √Î∫ÛΩ· ¯);
+            timerView.setText(String.valueOf(millisUntilFinished  1000));
+        }
+
+        @Override
+        public void onFinish() {
+            mGetCodeBtn.setText(Ω· ¯);
+            mGetCodeBtn.setClickable(true);
+            mGetCodeBtn.setBackgroundColor(Color.parseColor(#4EB84A));
+            Intent intent = new Intent(getActivity(), TwoActivity.class);
+            startActivity(intent);
+        }
+    }
+}
