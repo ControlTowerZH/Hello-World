@@ -1,0 +1,63 @@
+package com.exercise.zh.myfragment;
+
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
+
+
+/**
+ * Created by Administrator on 2018/10/17.
+ */
+
+public class Main extends AppCompatActivity {
+    private TextView main_text;
+    private MainFragment mainFragment;
+    private FragmentManager fm;
+    private FragmentTransaction transaction;
+    public static final int ADD_FRAGMENT=0;
+    public static final int REMOVE_FRAGMENT=1;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        initView();
+        initEvent();
+    }
+
+    private void initEvent() {
+        main_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                upDataFragment(ADD_FRAGMENT);
+            }
+        });
+    }
+
+    public void upDataFragment(int i) {
+         // 获取Fragment管理者
+         fm = getSupportFragmentManager();
+         transaction = fm.beginTransaction();
+        mainFragment = new MainFragment();
+        if (i==ADD_FRAGMENT){
+            transaction.add(R.id.main_fragment, mainFragment,"CamFragmentOpen");
+            transaction.commit();
+        }else if (i==REMOVE_FRAGMENT){
+            Fragment fragment=fm.findFragmentByTag("CamFragmentOpen");
+            transaction.remove(fragment).commit();
+        }
+
+    }
+
+    private void initView() {
+        main_text = findViewById(R.id.main_text);
+    }
+}
+
